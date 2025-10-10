@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="author">
+        <title>Document</title>
+        <link rel="stylesheet" href="JSExample1.css" type="text/css">
+    </head>
+    <body>
+        <div>
+            <p>商品：web前端课程</p>
+            <p>原价：1980元</p>
+            <p>现价：1.98元</p>
+            <p>内容：HTML、css、js</p>
+            <p>地址：******</p>
+            <p>
+                <button>取消</button>
+                <button>支付</button>
+            </p>
+        </div>
+        <script>
+            document.getElementsByTagName('button')[1].ondblclick = function(){
+                let res = window.confirm('确定支付？');
+                if(res){
+                    location.href = './succ.html'
+                }
+            }
+        </script>
+    </body>
+</html>
