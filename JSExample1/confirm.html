@@ -18,6 +18,12 @@
             </p>
         </div>
         <script>
+            document.getElementsByTagName('button')[0].ondblclick = function(){
+                let res = window.confirm('确定取消？')
+                if (res){
+                    location.href = '../index.html'
+                }
+            }
             document.getElementsByTagName('button')[1].ondblclick = function(){
                 let res = window.confirm('确定支付？');
                 if(res){
