@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">点我开始倒计时</button>
+    <div class="output" style="height: 410px;overflow: auto;">
+        <p>这里什么都没有</p>
+    </div>
+    <script>
+        const btn = document.querySelector("#btn");
+        var output = document.querySelector(".output");
+        btn.addEventListener("click", () => {
+            output.innerHTML = '';
+            var i = 10;
+            while (i >= 0) {
+                var para = document.createElement("p");
+                if (i === 0) {
+                    para.textContent = 0 + " cut dowwn";
+                } else {
+                    para.textContent = i;
+                }
+                output.appendChild(para);
+                i--;
+            }
+        });
+    </script>
+</body>
+
+</html>

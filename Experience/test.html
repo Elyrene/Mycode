@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点我替换下行文字</button>
+    <div class="output" style="height: 410px;overflow: auto;"><p>这里什么都没有</p></div>
+    <script>
+        const btn = document.querySelector("#btn");
+        var output = document.querySelector(".output");
+        btn.addEventListener("click",() => {
+            output.innerHTML = `hello world`;
+        });
+    </script>
+</body>
+</html>
