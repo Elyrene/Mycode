@@ -11,16 +11,22 @@
 </head>
 
 <body>
-    <button>你好，世界</button>
-    <button id="btn">更改前面按钮属性</button>
+    <button>点击按钮</button>
     <script>
+        const controller = new AbortController();
         const btn = document.querySelector("button");
-        const btn2 = document.querySelector("#btn");
-        btn2.onclick = () => {
-            btn.setAttribute("name", "hello button");
-            btn.setAttribute("disabled", "");
+        btn.addEventListener("click", () => {
+            changeBgcolor();
+            controller.abort();
+        }, { signal: controller.signal });
+        function getRandomNum() {
+            return Math.floor(Math.random() * 255);
         };
 
+        function changeBgcolor() {
+            const bgcolor = `rgb(${getRandomNum()}, ${getRandomNum()}, ${getRandomNum()})`
+            document.body.style.backgroundColor = bgcolor;
+        };
     </script>
 </body>
 
