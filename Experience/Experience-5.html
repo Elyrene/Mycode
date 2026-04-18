@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Function start</title>
+    <style>
+        .msgBox {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 242px;
+            background: #eee;
+        }
+
+        .msgBox p {
+            padding-left: 82px;
+            background-position: 25px center;
+            background-repeat: no-repeat;
+            line-height: 1.5;
+            padding: 10px 20px;
+            color: #333;
+        }
+
+        .msgBox button {
+            background: none;
+            border: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 1.1rem;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn1">Display message box:waring</button>
+    <button id="btn2">Display message box:Chat</button>
+
+    <script>
+        const btn1 = document.querySelector("#btn1");
+        const btn2 = document.querySelector("#btn2");
+
+        btn1.onclick = () => {
+            displayMessage("Your inbox is almost full — delete some mails","warning");
+        };
+
+        btn2.onclick = () => {
+            displayMessage("Brian: Hi there, how are you today?","Chat");
+        };
+        //btn.onclick = displayMessage(`Woo, this is a different message!`);
+        //不可以这样写，函数会直接调用。
+        function displayMessage(msgText, msgType) {
+            const html = document.querySelector("html");
+            const pannel = document.createElement("div");
+            const msg = document.createElement("p");
+            const closeButton = document.createElement("button");
+
+            if (msgType === "warning") {
+                msg.style.backgroundImage = "url(icons/warning.png)";
+                pannel.style.backgroundColor = "red";
+            }else if (msgType === "Chat") {
+                msg.style.backgroundImage = "url(icons/warning.png)";
+                pannel.style.backgroundColor = "aqua";
+            }else {
+                msg.style.paddingLeft = "20px";
+            }
+
+
+            pannel.setAttribute("class", "msgBox");
+            html.appendChild(pannel);
+
+            
+            msg.textContent = msgText;
+            pannel.appendChild(msg);
+
+            
+            closeButton.textContent = `x`;
+            pannel.appendChild(closeButton);
+
+            closeButton.onclick = function() {
+                pannel.parentNode.removeChild(pannel);
+            }; 
+        };
+    </script>
+</body>
+
+</html>

@@ -1,19 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Function start</title>
+    <style>
+        
+    </style>
 </head>
+
 <body>
-    <button id="btn">点我替换下行文字</button>
-    <div class="output" style="height: 410px;overflow: auto;"><p>这里什么都没有</p></div>
+    <button>你好，世界</button>
+    <button id="btn">更改前面按钮属性</button>
     <script>
-        const btn = document.querySelector("#btn");
-        var output = document.querySelector(".output");
-        btn.addEventListener("click",() => {
-            output.innerHTML = `hello world`;
-        });
+        const btn = document.querySelector("button");
+        const btn2 = document.querySelector("#btn");
+        btn2.onclick = () => {
+            btn.setAttribute("name", "hello button");
+            btn.setAttribute("disabled", "");
+        };
+
     </script>
 </body>
+
 </html>
