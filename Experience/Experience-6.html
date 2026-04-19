@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Object-oriented JavaScript example</title>
+  </head>
+
+  <body>
+
+    <script>
+        const person = {
+            name: ["Bob", "smith"],
+            age: 32,
+            bio() {
+                console.log(`${this.name[0]} ${this.name[1]}现在已经${this.age}岁了。`);
+            },
+            introductself() {
+                console.log(`我是${this.name[0]}`);
+            },
+            
+        };
+        const myDataName = "height";
+        const myDataValue = "1.75m";
+        person[myDataName] = myDataValue;
+        person["weight"] = "34kg";
+        function logPropertyName(propertyName) {
+            console.log(person[propertyName]);
+        };
+        logPropertyName("name");
+        logPropertyName("age");
+    </script>
+  </body>
+
+</html>

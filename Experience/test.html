@@ -6,27 +6,42 @@
     <meta name="viewport" content="width=device-width">
     <title>Function start</title>
     <style>
-        
+        * {
+            box-sizing: border-box;
+        }
+    
+        p {
+            color: purple;
+            margin: 0.5em 0;
+        }
     </style>
 </head>
 
 <body>
-    <button>点击按钮</button>
+    <section></section>
     <script>
-        const controller = new AbortController();
-        const btn = document.querySelector("button");
-        btn.addEventListener("click", () => {
-            changeBgcolor();
-            controller.abort();
-        }, { signal: controller.signal });
-        function getRandomNum() {
-            return Math.floor(Math.random() * 255);
+        const cat = {
+            name: "Bertie",
+            breed: "Cymric",
+            color: "white",
+            greeting: function () {
+                console.log("Meow!");
+            },
         };
 
-        function changeBgcolor() {
-            const bgcolor = `rgb(${getRandomNum()}, ${getRandomNum()}, ${getRandomNum()})`
-            document.body.style.backgroundColor = bgcolor;
-        };
+// Don't edit the code above here!
+        const cat2 = {
+            name: "",
+            name: "Elfie",
+            breed: "Aphrodite Giant",
+            color: "ginger",
+            greeting2() {
+                console.log(`hello my name is ${this.name} my color is ${this.color}.`)
+            }
+        }
+        cat.greeting();
+        cat2.greeting2();
+// Add your code here
     </script>
 </body>
 

@@ -7,7 +7,7 @@ const overlay = document.querySelector('.overlay');
 const controller = new AbortController();
 
 /* Declaring the array of image filenames */
-const image = [
+const images = [
     "pic1.jpg:Closeup of a human eye",
     "pic2.jpg:Some image-2",
     "pic3.jpg:Some image-3",
@@ -17,9 +17,9 @@ const image = [
 /* Declaring the alternative text for each image file */
 
 /* Looping through images */
-for (let i = 0; i < 5; i++) {
+for (const image  of images) {
     const newImage = document.createElement('img');
-    const imageinfo = image[i].split(":");
+    const imageinfo = image.split(":");
     newImage.setAttribute('src', `images/${imageinfo[0]}`);
     newImage.setAttribute('alt', `images/${imageinfo[1]}`);
     thumbBar.appendChild(newImage);
