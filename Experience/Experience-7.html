@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8"/>
+    <title>类的创建与继承</title>
+    <style>
+      p {
+        color: purple;
+        margin: 0.5em 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+
+  <body>
+
+    <section class="preview"></section>
+
+  </body>
+  <script>
+  class Shape {
+    constructor(name, sides, sideLength) {
+        this.name = name;
+        this.sides = sides;
+        this.sideLength = sideLength;
+    }
+
+    calcPerimeter() {
+        console.log(`Total length is ${this.sides * this.sideLength}`);
+    }
+
+  }
+
+  class sameLenth extends Shape {
+    constructor(sideLength) {
+        super(name);
+        this.sides = 4;
+        this.sideLength = sideLength;
+    }
+
+    calcArea() {
+        console.log(`Square is ${this.sideLength * this.sideLength}`);
+    }
+  }
+
+  const shape1 = new Shape("Square", 4, 5);
+
+  shape1.calcPerimeter();
+
+  const triangle = new Shape("triangle", 3, 3);
+
+  triangle.calcPerimeter();
+
+  const square = new sameLenth(5);
+
+  square.calcPerimeter();
+  square.calcArea();
+
+  </script>
+
+</html>
