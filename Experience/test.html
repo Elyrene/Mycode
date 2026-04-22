@@ -8,71 +8,62 @@
         color: purple;
         margin: 0.5em 0;
       }
-
+    
       * {
         box-sizing: border-box;
+      }
+    
+      textarea {
+        display: block;
+        margin: 1rem 0;
       }
     </style>
   </head>
 
   <body>
+    <label for="quota">素数个数：</label>
+    <input type="text" id="quota" name="quota" value="100000" />
+  
+    <button id="generate">生成素数</button>
+    <button id="reload">重载</button>
 
-    <section class="preview"></section>
-
+    <textarea rows="5" id="user-input" cols="62">
+      点击生成素数后在此处尝试输入文本
+    </textarea>
+  
+    <div id="output"></div>
   </body>
   <script>
-    const section = document.querySelector('section');
-
-    let para1 = document.createElement('p');
-    let para2 = document.createElement('p');
-    let motherInfo = 'The mother cats are called ';
-    let kittenInfo;
-    const requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/tasks/json/sample.json';
-
-    fetch(requestURL)
-    .then(response => response.text())
-    .then(text => displayCatInfo(text))
-
-    function displayCatInfo(catString) {
-      let total = 0;
-      let male = 0;
-      
-      // Add your code here
-      const catsInfo = JSON.parse(catString);
-      let i = 0;
-      for (const catInfo of catsInfo) {
-        i++;
-        // console.log(i);
-        // console.log(catsInfo.length);
-        // console.log(catInfo.kittens);
-        for(const kidInfo of catInfo.kittens){
-          total += 1;
-          if (kidInfo.gender === "m") {
-            male++;
+    function generatePrimes (quota) {
+      function isPrime (n) {
+        for (let c = 2; c <= quota; ++c) {
+          if (n % c === 0) {
+            return false;
           }
         }
-        if (i < catsInfo.length - 1) {
-          motherInfo += `${catInfo.name},`;
-        } else if (i === catsInfo.length - 1){
-          motherInfo += `${catInfo.name} `
-        } else {
-          motherInfo += `and ${catInfo.name}.`
-        }
-
-        total += 1;
+        // console.log(n);
+        return true;
       }
-      // console.log(catsInfo);
-      // console.log(male);
-      // console.log(total);
-      let female = total - male;
-      kittenInfo = `小猫中有${male}只公猫和${female}只母猫`
-      // Don't edit the code below here!
-
-      para1.textContent = motherInfo;
-      para2.textContent = kittenInfo;
+      const primes = [];
+      const maximum = 100000000;
+      while (primes.length < quota) {
+        const candidate = Math.floor(Math.random() * (maximum + 1));
+        // console.log(candidate);
+        if (isPrime(candidate)) {
+          primes.push(candidate);
+        }
+      }
+      return primes;
     }
 
-    section.appendChild(para1);
-    section.appendChild(para2);
+    document.querySelector("#generate").addEventListener("click", () => {
+      const quota = document.querySelector("#quota").value;
+      const primes = generatePrimes(quota);
+      document.querySelector(`#output`).textContent = `完成!已生成素数${quota}个`;
+    });
+
+    document.querySelector("#reload").addEventListener("click", () => {
+      document.location.reload();
+    });
   </script>
 </html>
