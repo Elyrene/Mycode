@@ -28,13 +28,13 @@
             let searchName = input.value.toLowerCase();
             input.value = "";//清空搜索框
             input.focus();//重新聚焦搜索框
-            for (let i = 0; i <= contacts.length; i++) {
+            for (const contact of contacts) {
                 //split() 方法接受一个模式，通过搜索模式将字符串分割成一个有序的子串列表，将这些子串放入一个数组，并返回该数组。
-                let splitContact = contacts[i].split(":");
+                const splitContact = contact.split(":");
                 if (splitContact[0].toLowerCase() === searchName) {
                     para.textContent = splitContact[0] + "'s number name is" + splitContact[1] + ".";
                     break;
-                } else if (i === contacts.length - 1) {
+                } else{
                     para.textContent = "Can not found.";
                 }
             }
