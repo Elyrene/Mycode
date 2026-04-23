@@ -24,7 +24,7 @@
 
   </body>
   <script>
-    //例一
+    // 例一
     // const promise = fetch("https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json");
     // console.log(promise);
     // promise.then((Response) => {
@@ -37,7 +37,7 @@
     // fetchPromis.then(Response => {
     //   const jsonpromise = Response.json();
     //   jsonpromise.then(json => {
-    //     console.log(json);
+    //     console.log(json[0].name);
     //   });
     // });
 
@@ -50,7 +50,7 @@
     //   });
 
     // //例四
-    // // const fetchPromis = fetch("https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json");
+    // const fetchPromis = fetch("https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json");
     // const fetchPromis = fetch("bad-scheme://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json");
     // fetchPromis
     //   .then(Response => (Response.json()))
@@ -61,7 +61,7 @@
     //     console.log(`获取产品列表失败${Error}`);
     //   });
 
-      //例五
+    //   例五
       async function fetchProducts() {
         try{
           const Response = await fetch("https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json");

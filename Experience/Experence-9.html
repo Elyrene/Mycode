@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8"/>
+    <title>JSON: Task 1</title>
+    <style>
+      p {
+        color: purple;
+        margin: 0.5em 0;
+      }
+    
+      * {
+        box-sizing: border-box;
+      }
+    
+      textarea {
+        display: block;
+        margin: 1rem 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <label for="quota">素数个数：</label>
+    <input type="text" id="quota" name="quota" value="100000" />
+  
+    <button id="generate">生成素数</button>
+    <button id="reload">重载</button>
+
+    <textarea rows="5" id="user-input" cols="62">
+      点击生成素数后在此处尝试输入文本
+    </textarea>
+  
+    <div id="output"></div>
+  </body>
+  <script>
+    function generatePrimes (quota) {
+      function isPrime (n) {
+        for (let c = 2; c <= quota; ++c) {
+          if (n % c === 0) {
+            return false;
+          }
+        }
+        // console.log(n);
+        return true;
+      }
+      const primes = [];
+      const maximum = 100000000;
+      while (primes.length < quota) {
+        const candidate = Math.floor(Math.random() * (maximum + 1));
+        // console.log(candidate);
+        if (isPrime(candidate)) {
+          primes.push(candidate);
+        }
+      }
+      return primes;
+    }
+
+    document.querySelector("#generate").addEventListener("click", () => {
+      const quota = document.querySelector("#quota").value;
+      const primes = generatePrimes(quota);
+      document.querySelector(`#output`).textContent = `完成!已生成素数${quota}个`;
+    });
+
+    document.querySelector("#reload").addEventListener("click", () => {
+      document.location.reload();
+    });
+  </script>
+</html>
