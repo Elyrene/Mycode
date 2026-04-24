@@ -21,64 +21,37 @@
   </head>
 
   <body>
-
+    <label for="name">你的名字:</label>
+    <input type="text" name="name" id="name" value="Elyrene"/><br>
+    <label for="time">输入延迟:</label>
+    <input type="text" name="time" id="time" value="2000"/><br>
+    <div><button id="alarm">设置定时器</button></div><br>
+    <div id="output">请设置定时器</div>
   </body>
   <script>
-    //例一
-    // const promise = fetch("https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json");
-    // console.log(promise);
-    // promise.then((Response) => {
-    //   console.log(`已收到响应:${Response.status}`);
-    // });
-    // console.log(`已发送请求`);
+    const name = document.querySelector("#name");
+    const time = document.querySelector("#time");
+    const output = document.querySelector("#output");
+    const button = document.querySelector("#alarm");
 
-    //例二
-    // const fetchPromis = fetch("https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json");
-    // fetchPromis.then(Response => {
-    //   const jsonpromise = Response.json();
-    //   jsonpromise.then(json => {
-    //     console.log(json);
-    //   });
-    // });
-
-    //例三
-    // const fetchPromis = fetch("https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json");
-    // fetchPromis
-    //   .then(Response => Response.json())
-    //   .then(data => {
-    //     console.log(data[0].name);
-    //   });
-
-    // //例四
-    // // const fetchPromis = fetch("https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json");
-    // const fetchPromis = fetch("bad-scheme://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json");
-    // fetchPromis
-    //   .then(Response => (Response.json()))
-    //   .then(json => {
-    //     console.log(json[0].name);
-    //   })
-    //   .catch(Error => {
-    //     console.log(`获取产品列表失败${Error}`);
-    //   });
-
-      //例五
-      async function fetchProducts() {
-        try{
-          const Response = await fetch("https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json");
-          if(!Response.ok){
-            throw new Error(`HTTP请求错误${Response.status}`);
-          }
-          const json = Response.json();
-          return json;
-        } catch (Error) {
-          console.log(`无法获取产品列表${Error}`);
+    function alarm(person, delay) {
+      return new Promise((resolve, reject) => {
+        if (delay < 0){
+          throw new Error(`delay is not allowed`);
         }
-      }
-      const promise = fetchProducts();
-      promise.then(json => {
-        console.log(json[0].name);
+        window.setTimeout(() => {
+          resolve(`Wake UP ${person}!`);
+        }, delay);
       });
-      
-      
+    }
+
+    button.addEventListener("click", async() => {
+      try{
+        const message = await alarm(name.value, time.value);
+        output.textContent = message;
+      } catch (Error) {
+        output.textContent = `Could not set Alarm ${Error}`;
+      };
+    });
   </script>
 </html>

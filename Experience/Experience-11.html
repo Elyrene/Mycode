@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8"/>
+    <title>JSON: Task 1</title>
+    <style>
+      p {
+        color: purple;
+        margin: 0.5em 0;
+      }
+    
+      * {
+        box-sizing: border-box;
+      }
+    
+      textarea {
+        display: block;
+        margin: 1rem 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button id="set-alarm">set-alarm</button>
+    <div id="output">区块1</div>
+    <div id="output2">区块2</div>
+    <label for="name">你的名字:</label>
+    <input type="text" name="name" id="name" value="Elyrene"/><br>
+    <label for="time">输入延迟:</label>
+    <input type="text" name="time" id="time" value="2000"/><br>
+    <div><button id="alarm">设置定时器</button></div><br>
+    <div id="output4">请设置定时器</div>
+  </body>
+  <script>
+    const output = document.querySelector("#output");
+    const output2 = document.querySelector("#output2");
+    const button = document.querySelector("#set-alarm");
+    const name = document.querySelector("#name");
+    const delay = document.querySelector("#time");
+    const output4 = document.querySelector("#output4");
+    const button2 = document.querySelector("#alarm");
+
+    function setAlarm() {
+      window.setTimeout(() => {
+        output.textContent = `Wake UP`;
+      },1000);
+    }
+
+    function Alarm(person ,delay) {
+      return new Promise((resovle, reject) => {
+        if (delay < 0) {
+          throw new Error("Alarm delay must not be nagetive");
+        }
+        window.setTimeout(() => {
+          resovle(`wake UP ${person}`);  
+        }, delay);
+      });
+    }
+
+    button.addEventListener("click", () => {
+      setAlarm();
+      Alarm("Elyrene", 1000)
+        .then(message => {output2.textContent = message})
+        .catch((Error) => (output2.textContent = `Could not set Alarm ${Error}`));
+    });
+
+    button2.addEventListener("click", async() => {
+      try{
+        const message = await Alarm(name.value, delay.value);
+        output4.textContent = message;
+      } catch(Error){
+        output4.textContent = `Could not set Alarm ${Error}`;
+      };
+    });
+  </script>
+</html>
